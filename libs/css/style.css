@@ -105,7 +105,11 @@ footer {
   top: 0px;
 }
 
-.right select {
+.right .select-wrapper {
+  position: relative;
+}
+
+.right .select-wrapper select {
   width: 100%;
   background: #FFFFFF;
   border: 1px solid #E4E7EB;
@@ -114,9 +118,23 @@ footer {
   padding: 8px 16px;
   margin-bottom: 16px;
   outline: none;
+  -moz-appearance: none;
+  /* Firefox */
+  -webkit-appearance: none;
+  /* Safari and Chrome */
+  appearance: none;
 }
 
-.right select + p {
+.right .select-wrapper::after {
+  content: url("../images/arrow.svg");
+  position: absolute;
+  right: 20px;
+  top: 8px;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+.right .select-wrapper + p {
   color: #52606B;
   font-style: italic;
   font-weight: 400;
@@ -124,7 +142,7 @@ footer {
   text-align: justify;
 }
 
-.right select + p span {
+.right .select-wrapper + p span {
   font-weight: 600;
 }
 
@@ -182,6 +200,35 @@ footer {
 
 .chi-tieu-phan-tich .content .item:hover {
   background: #cfcece;
+}
+
+.chi-tieu-phan-tich .content .selected {
+  background: #d4f7d0;
+}
+
+#repo {
+  margin-bottom: 20px;
+  max-height: 200px;
+  overflow: auto;
+}
+
+#repo .item {
+  padding: 8px;
+  color: #52606B;
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 14px;
+  margin-right: 6px;
+  background: #d4f7d0;
+  border: 1px solid #EFF1F4;
+  border-radius: 4px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#repo .item span {
+  color: #7D8D9A;
+  margin-left: 8px;
 }
 
 .quantity {

@@ -39,8 +39,8 @@
                     <img class="active mb-3" src="libs/images/slide1.png" alt="">
                     <div class="group-image">
                         <img class="item" src="libs/images/slide1.png" alt="">
-                        <img class="item" src="libs/images/slide1.png" alt="">
-                        <img class="item" src="libs/images/slide1.png" alt="">
+                        <img class="item" src="libs/images/slide-2.png" alt="">
+                        <img class="item" src="libs/images/slide-3.png" alt="">
                     </div>
                 </div>
                 <div class="right col-md-7">
@@ -61,11 +61,21 @@
                         </div>
                     </div>
                     <h6>Thêm chỉ tiêu phân tích</h6>
-                    <select name="" id="">
-                        <option value="">Natri (Na+) (+105.000 ₫)</option>
-                        <option value="">Option 2</option>
-                        <option value="">Option 3</option>
-                    </select>
+                    <div id="repo">
+
+                    </div>
+                    <div class="select-wrapper">
+                        <select id="selectChiTieu" name="selectChiTieu" id="">
+                            <!-- <option value="1">Natri (Na+) (+105.000 ₫)</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                            <option value="6">Option 6</option>
+                            <option value="7">Option 7</option>
+                            <option value="8">Option 8</option> -->
+                        </select>
+                    </div>
                     <p>
                         Kết quả sẽ được gửi về mail từ <span>7 đến 15 ngày</span> làm việc tùy vào số lượng và địa chỉ
                         lấy mẫu
@@ -168,23 +178,56 @@
 <script>
 
 
-    var list = [
-    {
+var list = [{
         'id': 1,
-        'title': 'Đô màu',
-        'gia': 1000
+        'Name' :  'Natri (Na+) (+105.000 ₫)',
+        'price' : '500đ'
     },
     {
         'id': 2,
-        'title': 'Đô màu 2',
-        'gia': 2000
+        'Name' :  'Độ màu',
+        'price' : '200đ'
     },
     {
-        'id': 1,
-        'title': 'Đô màu 3',
-        'gia': 3000
+        'id': 3,
+        'Name' :  'Độ cứng tính theo CACO3',
+        'price' : '300đ'
+    },
+    {
+        'id': 4,
+        'Name' :  'Mùi vị',
+        'price' : '600đ'
+    },
+    {
+        'id': 5,
+        'Name' :  'Chỉ số Pecmanhanet',
+        'price' : '800đ'
+    },
+    {
+        'id': 6,
+        'Name' :  'Độ PH',
+        'price' : '900đ'
     }
-    ]
+];
+
+ $(document).ready(function () {
+
+    list.forEach(item =>{
+        $("#selectChiTieu").append(`<option value='${item.id}'>${item.Name}</option>`);
+    } );
+
+    $("#selectChiTieu").change(function(){
+        let val = $(this).val();
+       list.forEach(e => {
+           if (e.id == val ) {
+            $("#repo").append(` <span class="item selected">${e.Name}<span>${e.price}</span></span>`);
+           }
+       });
+        
+    });
+
+ });
+
 
     $(document).ready(function () {
         $(".subtract").click(function () {
@@ -202,30 +245,43 @@
 
 
     //Bảng giá
-$(document).ready(function () { 
-    $("#suggestion-tablet").owlCarousel({
-              center: false,
-              loop: false,
-              dots: true,
-              navs: false,
+    $(document).ready(function () {
+        $("#suggestion-tablet").owlCarousel({
+            center: false,
+            loop: false,
+            dots: true,
+            navs: false,
             //   autoplay: true,
             //   autoplayTimeout : 3000,
-              responsive: {
-                  0: {
-                      items: 1,
-                  },
-                  768: {
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                768: {
                     items: 2,
-                  },
-                  992: {
-                      items: 2,
-                  },
-                  1200: {
+                },
+                992: {
+                    items: 2,
+                },
+                1200: {
                     items: 3,
                 },
-              },
-      });
-});
+            },
+        });
+    });
+
+    $(document).ready(function () {
+        $(".chi-tieu-phan-tich .content .item").click(function () {
+            if ($(this).hasClass("selected")) {
+                $(this).removeClass("selected");
+            }else{
+                $(this).addClass("selected");
+            }
+            let list = [{}];
+            list = $(".chi-tieu-phan-tich .content .item.selected").toArray();
+            console.log(list);
+        });
+    });
 
 
     // $(document).ready(function () {
@@ -237,8 +293,19 @@ $(document).ready(function () {
 
     // });
 
+    $(document).ready(function () {
+        $(".group-image .item").click(function(){
+            let url = $(this).attr("src");
+            $(".left .active").attr("src",url) ;
+        });
 
-   
+        
+
+
+    });
+    
+    
+
 
 </script>
 
