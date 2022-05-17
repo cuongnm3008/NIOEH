@@ -231,6 +231,10 @@ footer {
   margin-left: 8px;
 }
 
+#repo .item:hover {
+  background: #d1cccc;
+}
+
 .quantity {
   color: #52606B;
   font-weight: 600;

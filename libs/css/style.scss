@@ -217,6 +217,9 @@ footer {
             color: #7D8D9A;
             margin-left: 8px;
         }
+        &:hover{
+            background: rgb(209, 204, 204);
+        }
     }
 }
 
@@ -428,12 +431,10 @@ footer {
 
     thead {
         background: #F6F8FA;
-        // width: 1140px;
         height: 44px;
 
         tr {
             th {
-
                 color: #677987;
                 font-weight: 500;
                 font-size: 12px;

@@ -178,55 +178,107 @@
 <script>
 
 
-var list = [{
+    var list = [{
         'id': 1,
-        'Name' :  'Natri (Na+) (+105.000 ₫)',
-        'price' : '500đ'
+        'Name': 'Natri (Na+) (+105.000 ₫)',
+        'price': '500đ'
     },
     {
         'id': 2,
-        'Name' :  'Độ màu',
-        'price' : '200đ'
+        'Name': 'Độ màu',
+        'price': '200đ'
     },
     {
         'id': 3,
-        'Name' :  'Độ cứng tính theo CACO3',
-        'price' : '300đ'
+        'Name': 'Độ cứng tính theo CACO3',
+        'price': '300đ'
     },
     {
         'id': 4,
-        'Name' :  'Mùi vị',
-        'price' : '600đ'
+        'Name': 'Mùi vị',
+        'price': '600đ'
     },
     {
         'id': 5,
-        'Name' :  'Chỉ số Pecmanhanet',
-        'price' : '800đ'
+        'Name': 'Chỉ số Pecmanhanet',
+        'price': '800đ'
     },
     {
         'id': 6,
-        'Name' :  'Độ PH',
-        'price' : '900đ'
+        'Name': 'Độ PH',
+        'price': '900đ'
     }
-];
+    ];
 
- $(document).ready(function () {
+    var listThem = [];
 
-    list.forEach(item =>{
-        $("#selectChiTieu").append(`<option value='${item.id}'>${item.Name}</option>`);
-    } );
+    $(document).ready(function () {
 
-    $("#selectChiTieu").change(function(){
-        let val = $(this).val();
-       list.forEach(e => {
-           if (e.id == val ) {
-            $("#repo").append(` <span class="item selected">${e.Name}<span>${e.price}</span></span>`);
-           }
-       });
-        
+        list.forEach(item => {
+            $("#selectChiTieu").append(`<option onclick="addRemove(1)"  value='${item.id}'>${item.Name}</option>`);
+        });
+
+        $("#selectChiTieu").change(function () {
+            let val = $(this).val();
+            let item1 = list.find(x => x.id == val);
+            console.log(val);
+            if (listThem.length > 0) {
+                if (listThem.find(x => x.id !== val)) {
+                   
+                    let item1 = list.find(x => x.id == val);
+                  
+                    $("#repo").append(` <span onClick="removeItem(${item1.id})" class="item selected">${item1.Name}<span>${item1.price}</span></span>`);
+                    listThem.push(
+                        {
+                            "id": item1.id,
+                            "name": item1.Name,
+                            "price": item1.price
+                        }
+                    );
+                }
+            } 
+
+            // list.forEach(e => {
+            //         if (e.id == val) {
+            //             $("#repo").append(` <span onClick="removeItem(${e.id})" class="item selected">${e.Name}<span>${e.price}</span></span>`);
+            //             listThem.push(
+            //                 {
+            //                     "id": e.id,
+            //                     "name": e.Name,
+            //                     "price": e.price
+            //                 }
+            //             );
+            //         }
+            // });
+        });
     });
 
- });
+    function removeItem(id) {
+        listThem.forEach(e => {
+            if (e.id == id) {
+                console.log("here:" + id);
+                listThem.splice(listThem.indexOf(e), 1);
+                $("#repo").empty();
+                listThem.forEach(e => {
+                    $("#repo").append(` <span onClick="removeItem(${e.id})" class="item selected">${e.name}<span>${e.price}</span></span>`);
+                });
+            }
+        });
+
+    }
+
+
+    //  $(document).ready(function () {
+    //     $("#repo .item.selected").click(function(){
+    //         alert("hello");
+    //         let val = $(this).val();
+    //         console.log(val);
+    //         // list.remove(function(el) {
+    //         //     return el.id != ($(this).val()); 
+    //         // });
+    //     });
+    //  });
+
 
 
     $(document).ready(function () {
@@ -274,7 +326,7 @@ var list = [{
         $(".chi-tieu-phan-tich .content .item").click(function () {
             if ($(this).hasClass("selected")) {
                 $(this).removeClass("selected");
-            }else{
+            } else {
                 $(this).addClass("selected");
             }
             let list = [{}];
@@ -290,21 +342,16 @@ var list = [{
     //         console.log(this);
     //         abc.remove(this);
     //     });
-
     // });
 
     $(document).ready(function () {
-        $(".group-image .item").click(function(){
+        $(".group-image .item").click(function () {
             let url = $(this).attr("src");
-            $(".left .active").attr("src",url) ;
+            $(".left .active").attr("src", url);
         });
-
-        
-
-
     });
-    
-    
+
+
 
 
 </script>
