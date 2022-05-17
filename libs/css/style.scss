@@ -104,42 +104,41 @@ footer {
             top: 0px;
         }
     }
-    .select-wrapper{
-        position: relative;
-        select {
-            width: 100%;
-            background: #FFFFFF;
-            border: 1px solid #E4E7EB;
-            border-radius: 4px;
-            color: #677987;
-            padding: 8px 16px;
-            margin-bottom: 16px;
-            outline: none;
-            -moz-appearance:none; /* Firefox */
-            -webkit-appearance:none; /* Safari and Chrome */
-            appearance:none;
-        }
-        &::after{
-            content: url("../images/arrow.svg");
-            position: absolute;
-            right: 20px;
-            top: 8px;
-            transform: scale(1.2);
-        }
-        +p {
-            color: #52606B;
-            font-style: italic;
-            font-weight: 400;
-            font-size: 16px;
-            text-align: justify;
-
-            span {
-                font-weight: 600;
-            }
-        }
-    }   
-   
 }
+.select-wrapper{
+    position: relative;
+    select {
+        width: 100%;
+        background: #FFFFFF;
+        border: 1px solid #E4E7EB;
+        border-radius: 4px;
+        color: #677987;
+        padding: 8px 16px;
+        margin-bottom: 16px;
+        outline: none;
+        -moz-appearance:none; /* Firefox */
+        -webkit-appearance:none; /* Safari and Chrome */
+        appearance:none;
+    }
+    &::after{
+        content: url("../images/arrow.svg");
+        position: absolute;
+        right: 20px;
+        top: 8px;
+        transform: scale(1.2);
+    }
+    +p {
+        color: #52606B;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 16px;
+        text-align: justify;
+
+        span {
+            font-weight: 600;
+        }
+    }
+}   
 
 .chi-tieu-phan-tich {
     border-top: 1px solid #EFF1F4;
@@ -477,13 +476,27 @@ footer {
 
     tbody {
         tr {
+            
             &:first-child {
                 td {
                     padding-top: 16px;
                 }
             }
+            &:not(:last-child){
+                position: relative;
+               &::after{
+                   content: "";
+                   left: 20px;
+                   bottom: 0px;
+                   width: 1050px;
+                   height: 0px;
+                   border-bottom: 1px solid #F6F8FA;
+                   position: absolute;
 
+               }
+            }
             td {
+                padding: 16px 0px;
                 &:first-child {
                     display: flex;
                     flex-direction: row;
@@ -548,11 +561,18 @@ footer {
                 &:nth-child(5) {
                     text-align: center;
                 }
+
+
             }
         }
     }
 }
-
+.packages{
+    background: #FFFFFF;
+    border: 1px solid #EFF1F4;
+    border-radius: 12px;
+    border-top: none;
+}
 .action {
     display: flex;
     justify-content: space-between;
@@ -669,7 +689,26 @@ footer {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-
+        label{
+            color: #677987;
+            font-weight: 400;
+            font-size: 14px;
+        }
+        input{
+            border: 1px solid #E4E7EB;
+            border-radius: 4px; 
+            color: #677987;
+            &:focus{
+                box-shadow: none;
+            }
+        }
+        select{
+            border: 1px solid #E4E7EB;
+            color: #677987;
+            &:focus{
+                box-shadow: none;
+            }
+        }
         .form-group {
             width: 48%;
             margin-bottom: 18px;
@@ -690,6 +729,46 @@ footer {
                 }
             }
         }
+
+        // input[type="date"]{
+        //     position: relative;
+        //     &::-webkit-calendar-picker-indicator {
+        //         -webkit-appearance: none;
+        //         background: none;
+        //         z-index: 1;
+        //         &::before{
+        //             content: url("../images/calendar.svg");
+        //             display: block;
+        //             position: absolute;
+        //             top: 0px;
+        //             right: 0px;
+        //         }
+        //     }
+        // }
+        input[type="date"] {
+            position: relative;
+            padding: 10px;
+          }
+          
+          input[type="date"]::-webkit-calendar-picker-indicator {
+            color: transparent;
+            background: none;
+            z-index: 1;
+          }
+          
+          input[type="date"]:before {
+            content: url("../images/calendar.svg");
+            color: transparent;
+            background: none;
+            display: block;
+            /* This is the calendar icon in FontAwesome */
+            width: 15px;
+            height: 20px;
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            color: #999;
+          }
     }
 
 
@@ -744,7 +823,9 @@ footer {
                 color: #24A11E;
                 font-weight: 600;
                 font-size: 18px;
-                padding-right: 10px;
+                &::after{
+                    content: "";
+                }
             }
 
             +span {

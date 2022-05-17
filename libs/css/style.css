@@ -105,11 +105,11 @@ footer {
   top: 0px;
 }
 
-.right .select-wrapper {
+.select-wrapper {
   position: relative;
 }
 
-.right .select-wrapper select {
+.select-wrapper select {
   width: 100%;
   background: #FFFFFF;
   border: 1px solid #E4E7EB;
@@ -125,7 +125,7 @@ footer {
   appearance: none;
 }
 
-.right .select-wrapper::after {
+.select-wrapper::after {
   content: url("../images/arrow.svg");
   position: absolute;
   right: 20px;
@@ -134,7 +134,7 @@ footer {
           transform: scale(1.2);
 }
 
-.right .select-wrapper + p {
+.select-wrapper + p {
   color: #52606B;
   font-style: italic;
   font-weight: 400;
@@ -142,7 +142,7 @@ footer {
   text-align: justify;
 }
 
-.right .select-wrapper + p span {
+.select-wrapper + p span {
   font-weight: 600;
 }
 
@@ -499,6 +499,24 @@ footer {
   padding-top: 16px;
 }
 
+.orders tbody tr:not(:last-child) {
+  position: relative;
+}
+
+.orders tbody tr:not(:last-child)::after {
+  content: "";
+  left: 20px;
+  bottom: 0px;
+  width: 1050px;
+  height: 0px;
+  border-bottom: 1px solid #F6F8FA;
+  position: absolute;
+}
+
+.orders tbody tr td {
+  padding: 16px 0px;
+}
+
 .orders tbody tr td:first-child {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -566,6 +584,13 @@ footer {
 
 .orders tbody tr td:nth-child(5) {
   text-align: center;
+}
+
+.packages {
+  background: #FFFFFF;
+  border: 1px solid #EFF1F4;
+  border-radius: 12px;
+  border-top: none;
 }
 
 .action {
@@ -707,6 +732,33 @@ footer {
       flex-wrap: wrap;
 }
 
+.diaChiLayMau .form-infor label {
+  color: #677987;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.diaChiLayMau .form-infor input {
+  border: 1px solid #E4E7EB;
+  border-radius: 4px;
+  color: #677987;
+}
+
+.diaChiLayMau .form-infor input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.diaChiLayMau .form-infor select {
+  border: 1px solid #E4E7EB;
+  color: #677987;
+}
+
+.diaChiLayMau .form-infor select:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .diaChiLayMau .form-infor .form-group {
   width: 48%;
   margin-bottom: 18px;
@@ -723,6 +775,31 @@ footer {
   right: -10px;
   top: -5px;
   font-size: 15px;
+}
+
+.diaChiLayMau .form-infor input[type="date"] {
+  position: relative;
+  padding: 10px;
+}
+
+.diaChiLayMau .form-infor input[type="date"]::-webkit-calendar-picker-indicator {
+  color: transparent;
+  background: none;
+  z-index: 1;
+}
+
+.diaChiLayMau .form-infor input[type="date"]:before {
+  content: url("../images/calendar.svg");
+  color: transparent;
+  background: none;
+  display: block;
+  /* This is the calendar icon in FontAwesome */
+  width: 15px;
+  height: 20px;
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  color: #999;
 }
 
 .checkout h3 {
@@ -774,7 +851,10 @@ footer {
   color: #24A11E;
   font-weight: 600;
   font-size: 18px;
-  padding-right: 10px;
+}
+
+.checkout .right .totalPrice span::after {
+  content: "";
 }
 
 .checkout .right .totalPrice + span {
