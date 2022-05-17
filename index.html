@@ -48,8 +48,8 @@
                     <span class="price"><span>2.000.000</span>1.000.000</span>
                     <div class="chi-tieu-phan-tich">
                         <h6>Chỉ tiêu phân tích</h6>
-                        <div class="content">
-                            <span class="item">Độ màu<span>50.000đ</span></span>
+                        <div id="chiTieuPhanTich" class="content">
+                            <!-- <span class="item">Độ màu<span>50.000đ</span></span>
                             <span class="item">Độ màu<span>50.000đ</span></span>
                             <span class="item">Độ cứng tính theo CACO3<span>50.000đ</span></span>
                             <span class="item">Mùi vị<span>50.000đ</span></span>
@@ -57,7 +57,7 @@
                             <span class="item">Độ màu<span>50.000đ</span></span>
                             <span class="item">Độ màu<span>50.000đ</span></span>
                             <span class="item">Độ PH<span>50.000đ</span></span>
-                            <span class="item">Độ màu<span>50.000đ</span></span>
+                            <span class="item">Độ màu<span>50.000đ</span></span> -->
                         </div>
                     </div>
                     <h6>Thêm chỉ tiêu phân tích</h6>
@@ -66,6 +66,7 @@
                     </div>
                     <div class="select-wrapper">
                         <select id="selectChiTieu" name="selectChiTieu" id="">
+                            <option selected disabled hidden> -- Chọn chỉ tiêu -- </option>
                             <!-- <option value="1">Natri (Na+) (+105.000 ₫)</option>
                             <option value="2">Option 2</option>
                             <option value="3">Option 3</option>
@@ -178,108 +179,122 @@
 <script>
 
 
-    var list = [{
+    var dropDownDatas = [{
         'id': 1,
-        'Name': 'Natri (Na+) (+105.000 ₫)',
+        'name': 'Natri (Na+) (+105.000 ₫)',
         'price': '500đ'
     },
     {
         'id': 2,
-        'Name': 'Độ màu',
+        'name': 'Độ màu',
         'price': '200đ'
     },
     {
         'id': 3,
-        'Name': 'Độ cứng tính theo CACO3',
+        'name': 'Độ cứng tính theo CACO3',
         'price': '300đ'
     },
     {
         'id': 4,
-        'Name': 'Mùi vị',
+        'name': 'Mùi vị',
         'price': '600đ'
     },
     {
         'id': 5,
-        'Name': 'Chỉ số Pecmanhanet',
+        'name': 'Chỉ số Pecmanhanet',
         'price': '800đ'
     },
     {
         'id': 6,
-        'Name': 'Độ PH',
+        'name': 'Độ PH',
         'price': '900đ'
     }
     ];
 
+
+    
+    var chiTieuPhanTichs = [{
+        'id': 7,
+        'name': 'Name1',
+        'price': '500đ'
+    },
+    {
+        'id': 8,
+        'name': 'Name2',
+        'price': '200đ'
+    },
+    {
+        'id': 9,
+        'name': 'Name3',
+        'price': '300đ'
+    },
+    {
+        'id': 10,
+        'name': 'Name4',
+        'price': '600đ'
+    },
+    {
+        'id': 11,
+        'name': 'Name5',
+        'price': '800đ'
+    },
+    {
+        'id': 12,
+        'name': 'Name6',
+        'price': '900đ'
+    }
+    ];
+
+
+
     var listThem = [];
+    var listTotal = [...listThem];
 
     $(document).ready(function () {
 
-        list.forEach(item => {
-            $("#selectChiTieu").append(`<option onclick="addRemove(1)"  value='${item.id}'>${item.Name}</option>`);
+        chiTieuPhanTichs.forEach(item => {
+            $("#chiTieuPhanTich").append(` <span class="item">${item.name}<span>${item.price}</span></span>`);
+        });
+
+        dropDownDatas.forEach(item => {
+            $("#selectChiTieu").append(`<option value='${item.id}'>${item.name}</option>`);
         });
 
         $("#selectChiTieu").change(function () {
             let val = $(this).val();
-            let item1 = list.find(x => x.id == val);
-            console.log(val);
-            if (listThem.length > 0) {
-                if (listThem.find(x => x.id !== val)) {
-                   
-                    let item1 = list.find(x => x.id == val);
-                  
-                    $("#repo").append(` <span onClick="removeItem(${item1.id})" class="item selected">${item1.Name}<span>${item1.price}</span></span>`);
-                    listThem.push(
-                        {
-                            "id": item1.id,
-                            "name": item1.Name,
-                            "price": item1.price
-                        }
-                    );
-                }
-            } 
-
-            // list.forEach(e => {
-            //         if (e.id == val) {
-            //             $("#repo").append(` <span onClick="removeItem(${e.id})" class="item selected">${e.Name}<span>${e.price}</span></span>`);
-            //             listThem.push(
-            //                 {
-            //                     "id": e.id,
-            //                     "name": e.Name,
-            //                     "price": e.price
-            //                 }
-            //             );
-            //         }
-            // });
+            let item = dropDownDatas.find(x => x.id == val);
+            if (!listThem.find(e => e.id == item.id)) {
+                $("#repo").append(` <span onClick="removeItem(${item.id})" class="item selected">${item.name}<span>${item.price}</span></span>`);
+                listThem.push(
+                    {
+                        "id": item.id,
+                        "name": item.name,
+                        "price": item.price
+                    }
+                );
+                listTotal.push(
+                    {
+                        "id": item.id,
+                        "name": item.name,
+                        "price": item.price
+                    }
+                );
+            }
         });
     });
 
     function removeItem(id) {
         listThem.forEach(e => {
             if (e.id == id) {
-                console.log("here:" + id);
                 listThem.splice(listThem.indexOf(e), 1);
+                listTotal.splice(listThem.indexOf(e), 1);
                 $("#repo").empty();
                 listThem.forEach(e => {
                     $("#repo").append(` <span onClick="removeItem(${e.id})" class="item selected">${e.name}<span>${e.price}</span></span>`);
                 });
             }
         });
-
     }
-
-
-    //  $(document).ready(function () {
-    //     $("#repo .item.selected").click(function(){
-    //         alert("hello");
-    //         let val = $(this).val();
-    //         console.log(val);
-    //         // list.remove(function(el) {
-    //         //     return el.id != ($(this).val()); 
-    //         // });
-    //     });
-    //  });
-
-
 
     $(document).ready(function () {
         $(".subtract").click(function () {
@@ -323,26 +338,18 @@
     });
 
     $(document).ready(function () {
-        $(".chi-tieu-phan-tich .content .item").click(function () {
+        $("#chiTieuPhanTich .item").click(function () {
             if ($(this).hasClass("selected")) {
                 $(this).removeClass("selected");
             } else {
                 $(this).addClass("selected");
             }
-            let list = [{}];
-            list = $(".chi-tieu-phan-tich .content .item.selected").toArray();
-            console.log(list);
+            let list = [];
+           
+           
         });
     });
 
-
-    // $(document).ready(function () {
-    //     var abc = $(".chi-tieu-phan-tich .item"); ///
-    //     abc.click(function () {
-    //         console.log(this);
-    //         abc.remove(this);
-    //     });
-    // });
 
     $(document).ready(function () {
         $(".group-image .item").click(function () {
